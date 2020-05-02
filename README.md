@@ -1,3 +1,15 @@
+#  🚧 Justice-PLP-DHV modifications
+The **justice-plp-dhv** forked OLDP in order to study it more closely. Minor changes have been applied:
+
+* Database switched to **PostgreSQL**
+* Using Python 3.8
+* Environment management and packaging with **pipenv**
+* Most component versions have been updated, where possible
+* L10n changes
+* Use of Makefile
+* ...
+
+
 # OLDP: Open Legal Data Platform
 
 [![Build Status](https://travis-ci.org/openlegaldata/oldp.svg?branch=master)](https://travis-ci.org/openlegaldata/oldp)

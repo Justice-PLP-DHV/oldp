@@ -211,8 +211,8 @@ class Base(Configuration):
     LANGUAGES_DOMAINS = values.DictValue({
         'localhost:8000': 'en',
         'oldp.local:8000': 'en',
-        'de.oldp.local:8000': 'de',
-        '127.0.0.1:8000': 'de',
+        'de.oldp.local:8000': 'en',
+        '127.0.0.1:8000': 'en',
     })
 
     LANGUAGE_CODE = 'en'
@@ -240,7 +240,7 @@ class Base(Configuration):
 
     PAGINATE_UNTIL = 20  # Max. number of pages
 
-    DATABASES = values.DatabaseURLValue('mysql://oldp:oldp@127.0.0.1/oldp')
+    DATABASES = values.DatabaseURLValue('pgsql://oldp:oldp@127.0.0.1/oldp')
 
     # Caching
 
@@ -457,19 +457,19 @@ class Base(Configuration):
         """Check database setup after settings are loaded"""
         # super(Base, cls).post_setup()
 
-        if cls.DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
+        if cls.DATABASES['default']['ENGINE'] == 'django.db.backends.postgresql':
             # Force strict mode (MySQL only)
             # https://stackoverflow.com/questions/23022858/force-strict-sql-mode-in-django
             if 'OPTIONS' not in cls.DATABASES['default']:
                 cls.DATABASES['default']['OPTIONS'] = {}
 
-            cls.DATABASES['default']['OPTIONS']['sql_mode'] = 'traditional'
+            # cls.DATABASES['default']['OPTIONS']['sql_mode'] = 'traditional'
             # TODO Check this to handle "Incorrect string value" db error
             # cls.DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
 
-            cls.DATABASE_MYSQL = True
+            cls.DATABASE_PG = True
         else:
-            cls.DATABASE_MYSQL = False
+            cls.DATABASE_PG = False
 
         # Disable cache
         if cls.DEBUG and cls.CACHE_DISABLE:

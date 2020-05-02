@@ -1,5 +1,5 @@
 # start from an official image
-FROM python:3.6
+FROM python:3.8-slim-buster
 
 # arbitrary location choice: you can change the directory
 RUN mkdir /app
@@ -13,13 +13,15 @@ RUN apt-get install -y nodejs gettext
 # copy our project code
 COPY . /app
 
+ARG DJANGO_SECRET_KEY="foobar12"
 ENV DJANGO_SETTINGS_MODULE=oldp.settings
 ENV DJANGO_CONFIGURATION=Dev
 ENV DATABASE_URL="sqlite:///dev.db"
-ENV DJANGO_SECRET_KEY=foobar12
+ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
 # install our dependencies
-RUN pip install -r requirements.txt
+RUN pip install pipenv
+RUN pipenv install --system --deploy
 RUN npm install
 RUN npm run-script build
 
@@ -35,4 +37,4 @@ EXPOSE 8000
 # gunicorn --bind 0.0.0.0:8000 oldp.wsgi:application
 # " --log-file", "-", "--log-level", "debug",
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "oldp.wsgi:application"]
-
+# ENTRYPOINT["make", "serve"]
