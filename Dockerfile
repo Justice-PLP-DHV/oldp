@@ -5,10 +5,11 @@ FROM python:3.8-slim-buster
 RUN mkdir /app
 WORKDIR /app
 
+RUN apt-get update
+RUN apt-get install -y nodejs gettext curl git
 # OS dependencies
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-RUN apt-get update
-RUN apt-get install -y nodejs gettext
+RUN curl -sL https://npmjs.org/install.sh | bash
 
 # copy our project code
 COPY . /app

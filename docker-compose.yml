@@ -2,7 +2,7 @@
 version: "3"
 services:
   app:
-    image: openlegaldata/oldp:latest
+    image: berzemus/oldp_justice:latest
     #build: .
     # container_name: oldp_app
     ports:
@@ -13,7 +13,7 @@ services:
       - DJANGO_REDIS_URL=redis://cache:6379/1
       - DJANGO_CACHE_DISABLE=1
       - DJANGO_ELASTICSEARCH_URL=http://search:9200/
-      - DATABASE_URL=mysql://oldp:oldp@db/oldp
+      - DATABASE_URL=pgsql://oldp:oldp@db:5432/oldp
     volumes:
       - ./docker/data/static:/app/oldp/assets/static
       - ./docker/data/workingdir:/app/workingdir
@@ -30,17 +30,17 @@ services:
   db:
     ports:
       # Make accessible by host machine
-      - "3306:3306"
+      - "5432:5432"
     # container_name: oldp_db
-    image: mariadb
+    image: postgres:12
     volumes:
       # needs chmod 777
-      - ./docker/data/mysql:/var/lib/mysql
+      - ./docker/data/db:/var/lib/postgresql
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=oldp
-      - MYSQL_USER=oldp
-      - MYSQL_PASSWORD=oldp
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=oldp
+      - POSTGRES_USER=oldp
+      - PGDATA=/var/lib/postgresql/data
     networks:
       - db_network
   search:

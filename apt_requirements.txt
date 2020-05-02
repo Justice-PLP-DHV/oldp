@@ -8,3 +8,4 @@ binutils
 libproj-dev
 gdal-bin
 npm
+libpq-dev
