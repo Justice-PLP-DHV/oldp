@@ -1,0 +1,55 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+future = "*"
+python-dateutil = "*"
+python-slugify = "*"
+requests = "*"
+requests-toolbelt = "*"
+whitenoise = "*"
+beautifulsoup4 = "*"
+msgpack = "<0.6,>=0.3.0"
+dj-database-url = "*"
+django-appconf = "*"
+django-configurations = "*"
+django-environ = "*"
+django-mathfilters = "*"
+django-compressor = "*"
+django-tellme = "*"
+django-widget-tweaks = "*"
+django-ckeditor = "*"
+django-autocomplete-light = "*"
+django-haystack = {git = "https://github.com/django-haystack/django-haystack.git",ref = "802b0f6f4b3b99314453261876a32bac2bbec94f"}
+django-crispy-forms = "*"
+django-allauth = "*"
+django-bootstrap-form = "*"
+django-debug-toolbar = "*"
+djangorestframework = "*"
+django-filter = "*"
+drf-haystack = "*"
+djangorestframework-xml = "*"
+drf-yasg = {extras = ["validation"],version = "==1.16.0"}
+flex = "*"
+swagger-spec-validator = "*"
+elasticsearch = "*"
+elasticsearch-dsl = "*"
+redis = "<3,>=2.10.0"
+django-redis = "*"
+selenium = "*"
+coverage = "*"
+coveralls = "*"
+django-extensions = "*"
+legal-reference-extraction = {git = "https://github.com/openlegaldata/legal-reference-extraction.git"}
+gunicorn = "*"
+cssselect = "*"
+lxml = "*"
+Pillow = "*"
+Django = "*"
+
+[requires]
+python_version = "3.8"
