@@ -3,7 +3,7 @@
   vars:
       deploy_user: 'intendant'
       deploy_keys:
-        - ~/.ssh/id_intendant.pub
+        - ~/.ssh/pub.pub
       required_packages:
         - apt-transport-https
         - ca-certificates
@@ -20,15 +20,19 @@
     apt: state=present pkg={{ required_packages }}
 
   - name : Add docker apt key
-    #shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-    apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
+    # Debian :
+    shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    # Ubuntu :
+    # apt_key:
+    #     url: https://download.docker.com/linux/ubuntu/gpg
+    #     state: present
 
   - name: Add apt source
     apt_repository:
-      # repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable
-      repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+      # Debian :
+      repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable
+      # Ubuntu :
+      # repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
       state: present
 
   - name: Update APT package cache
