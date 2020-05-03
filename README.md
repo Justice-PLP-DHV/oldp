@@ -7,6 +7,7 @@ The **justice-plp-dhv** forked OLDP in order to study it more closely. Minor cha
 * Most component versions have been updated, where possible
 * L10n changes
 * Use of Makefile
+* Integration and environment setup with **ansible** and **caprover**
 * ...
 
 
