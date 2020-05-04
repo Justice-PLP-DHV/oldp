@@ -39,7 +39,8 @@ class Base(Configuration):
         '127.0.0.1',
         'localhost',
         'oldp.local',
-        'de.oldp.local'
+        'de.oldp.local',
+        'oldp.openjustice.be',
     ])
 
     ####################
